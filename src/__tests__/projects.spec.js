@@ -96,6 +96,7 @@ describe("Projects", () => {
     expect(response.body).toMatchObject({
       likes: 0
     });
+    
   });
 
   it("should be able to delete the repository", async () => {
