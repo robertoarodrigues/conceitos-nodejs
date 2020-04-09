@@ -34,21 +34,22 @@ app.post("/repositories", (request, response) => {
 
 app.put("/repositories/:id", (request, response) => {
   const { id } = request.params
-  const {title, url, techs, likes} = request.body
-
-  const repository = {
-    id,
-    title,
-    url,
-    techs,
-    likes,
-  }
+  const {title, url, techs} = request.body
 
   const repositoryIndex = repositories.findIndex((repository) => repository.id === id)
   
   if(repositoryIndex < 0) {
       return response.status(400).send()
   } 
+
+  const repository = {
+    id,
+    title,
+    url,
+    techs,
+    likes: repositories[repositoryIndex].likes,
+  }
+  
   
   repositories[repositoryIndex] = repository
 
